@@ -50,3 +50,11 @@ button{
     font-family: inherit;
     border-radius: 14px;
 }
+@media (max-width: 800px){
+    .wrapper{
+        max-width: 95%;
+    }
+    #bot, #user{
+        max-width: 100%;
+    }
+}
