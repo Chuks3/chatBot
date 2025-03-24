@@ -4,13 +4,12 @@ const button = document.getElementsByTagName('button')[0];
 
 user.focus();
 
-var userName = null;
-var userMsg = "";
-var botMsg = "";
-var questionTrack = 'name';
+let userMsg = "";
+let botMsg = "";
+let questionTrack = 'mood';
 
 const responses = [
-    "Okay, how's your day going?",
+    "Okay, I'm good. How's your day?",
     "Good for you, how are things?",
     "You should get a life, are you in theraphy?",
     "I like you, do you have a partner?",
@@ -32,35 +31,21 @@ function keydownHandler(e) {
 }
 
 function startBot() {
-    if (user.value.trim() == '') {
-        alert('Type your response!')
+    userMsg = user.value.toLowerCase();
+    if (questionTrack == 'mood') {
+        moodAnalysis();
+    }
+    else if (questionTrack == 'color') {
+        colorAnalysis();
+    }
+    else if (questionTrack == 'dog') {
+        dogAnalysis();
     }
     else{
-        userMsg = user.value.toLowerCase();
-        if (questionTrack == 'name') {
-            nameAnalysis();
-        }
-        else if (questionTrack == 'mood') {
-            moodAnalysis();
-        }
-        else if (questionTrack == 'color') {
-            colorAnalysis();
-        }
-        else if (questionTrack == 'dog') {
-            dogAnalysis();
-        }
-        else{
-            responsesCal();
-        }
-        bot.textContent = botMsg;
-        user.value = "";
+        responsesCal();
     }
-}
-
-function nameAnalysis() {
-    userName = user.value.charAt(0).toUpperCase() + user.value.slice(1);
-    botMsg = 'Hi ' + userName + ", how are you today?"
-    questionTrack = 'mood';
+    bot.textContent = botMsg;
+    user.value = "";
 }
 
 function moodAnalysis() {
@@ -79,7 +64,7 @@ function moodAnalysis() {
 
 function colorAnalysis() {
     if (userMsg.indexOf('red') !== -1) {
-        botMsg = 'You sound in love. Do you have a partner?';
+        botMsg = 'You sound romantic. Do you have a partner?';
         questionTrack = 'love';
     }
     else if (userMsg.indexOf('blue') !== -1) {
@@ -124,6 +109,6 @@ function responsesCal() {
         responses.splice(newResponse, 1);
     } 
     else{ 
-        botMsg = "I am done. Bye " + userName + '.';
+        botMsg = "I am done.";
     }
 }
