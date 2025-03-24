@@ -26,7 +26,8 @@ body{
     transform: translate(-50%, -50%);
 }
 h1{
-    margin-left: 3em;
+    /* margin-left: 3em; */
+    text-align: center;
 }
 #bot{
     background-color: black;
